@@ -40,7 +40,12 @@ class CLI():
 
         output, stderrdata = proc.communicate()
         returncode = proc.wait()
-        if returncode != 0:
+
+        # Don't raise an error when it's a dependency conflict
+        # because we ask the user for confirmation later.
+        # As v1.3.8 of bower, the return code is either 1 or 0.
+        # Suggestions on how to handle this better?
+        if returncode != 0 and 'depends' not in output:
             error = NonCleanExitError(returncode)
             error.output = output
             raise error

@@ -5,6 +5,11 @@
       "args": {}
     },
     {
+      "caption": "Bower: Uninstall",
+      "command": "uninstall",
+      "args": {}
+    },
+    {
       "caption": "Bower: Discover packages",
       "command": "discover_package",
       "args": {}
