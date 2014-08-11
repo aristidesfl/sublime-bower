@@ -36,9 +36,9 @@ class CLI():
         if os.name == 'nt':
             cflags = 0x08000000  # Avoid opening of a cmd on Windows
 
-        proc = subprocess.Popen(command, cwd=cwd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, creationflags=cflags)
+        proc = subprocess.Popen(command, cwd=cwd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, creationflags=cflags, universal_newlines=True)
 
-        output = proc.stdout.read()
+        output, stderrdata = proc.communicate()
         returncode = proc.wait()
         if returncode != 0:
             error = NonCleanExitError(returncode)
